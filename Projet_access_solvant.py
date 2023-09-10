@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #Accesibilité au solvant oui
+=======
+#Accesibilité au solvant
+>>>>>>> 45721821a79069941e2e5c28f9ce635a87004ffb
 
 #Module
 import numpy as np
@@ -318,4 +322,8 @@ print(Liste, len(Liste))
 
 # Itérer sur la liste Liste
 for j in Liste:
+<<<<<<< HEAD
     print(j[1], j[2], j[3]) """
+=======
+    print(j[1], j[2], j[3]) """
+>>>>>>> 45721821a79069941e2e5c28f9ce635a87004ffb
