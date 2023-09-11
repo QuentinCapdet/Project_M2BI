@@ -12,8 +12,11 @@ def read_PDB(filename):
     with open(filename, "r") as file:
         for ligne in file:
             if (ligne[0:4] == "ATOM") & (ligne[77:78] != "H"):
-                dico = {"Atome" : ligne.split()[-1],
+                n_AA = ligne[22:29].strip()
+                dico = {
+                "Atome" : ligne.split()[-1],
                 "AA" : ligne.split()[3],
+                "n°AA" : n_AA,
                 "x" : float(ligne.split()[6]),
                 "y" : float(ligne.split()[7]),
                 "z" : float(ligne.split()[8])}
@@ -227,28 +230,53 @@ for i in range(len(dico)):
             
 
 # Afficher le résultat
-indices = np.arange(1, len(dico) + 1)
-print(f"Atomes {indices}: {pts_access}/{nombre_de_points}")
-print("fini !")
-print(np.sum(pts_access))
 
-""" for i, nb_contacts in enumerate(pts_access):
-    print(f"Atome {i + 1} : {nb_contacts}/{nombre_de_points}") """
+#print(pts_access)
+print(np.sum(pts_access)) 
+
+# calcul A2 par atome
+
+sum_by_AA = {}
+surface_A = 0
+surface_T = 0
+
+for i, nb_contacts in enumerate(pts_access):
+    res = (1 - (nb_contacts/nombre_de_points)) * (4 * math.pi * (dico[i]["vdW"] + rayon_H20)**2)
+    print(f"Atome {i + 1} : {nb_contacts}/{nombre_de_points}, {res:.2f}, {dico[i]['n°AA']}")
+    
+    surface_A = res
+    surface_T = 4 * math.pi * (dico[i]["vdW"])**2
+    sasa_percentage = (surface_A/surface_T) * 100
+    print(f"Atome {i + 1}: SASA % = {sasa_percentage:.2f}%")
 
 
+    num_AA = dico[i]["n°AA"]
 
-""" # Calculez les distances entre les atomes et les points de la sphère en utilisant des opérations NumPy
-atom_coordinates_expanded = atom_coordinates[:, np.newaxis, :]
-distances = np.linalg.norm(atom_coordinates_expanded - sphere_coordinates, axis=2)
+    if num_AA in sum_by_AA:
+            sum_by_AA[num_AA] += res
+    else:
+            sum_by_AA[num_AA] = res
 
-# Créez un masque booléen pour les points de contact en utilisant les indices des atomes
-contact_mask = (distances - Groupes_np[group_indices - 1, 7][:, np.newaxis]) < distance_seuil
+# Créez un dictionnaire pour mapper les numéros d'acides aminés aux noms
+num_to_nom_AA = {}
 
-# Comptez le nombre de points de contact pour chaque atome
-pts_access = np.sum(contact_mask, axis=1)
+# Ouverture du fichier PDB
+with open(file_PDB, "r") as fichier_pdb:
+    for ligne in fichier_pdb:
+        if ligne.startswith("ATOM") and ligne[77:78] != "H":
+            # Extrait le numéro d'acide aminé et le nom à partir de la ligne PDB
+            n_AA = int(ligne[22:29])
+            nom_AA = ligne[16:20].strip()  # Supprime les espaces autour du nom
 
-# Affichez le résultat
-indices = np.arange(1, len(dico) + 1)
-print(f"Atomes {indices}: {pts_access}/{nombre_de_points}")
-print("fini !")
-print(np.sum(pts_access)) """
+            # Ajoute la correspondance au dictionnaire
+            num_to_nom_AA[n_AA] = nom_AA
+
+# Le dictionnaire num_to_nom_AA contient maintenant les correspondances entre les numéros d'acides aminés et les noms
+#print(num_to_nom_AA)
+
+for residu, somme in sum_by_AA.items():
+    residu = int(residu)
+    nom_AA = num_to_nom_AA[residu]
+    print(f"Résidu {residu} {nom_AA}: Area(Å2) = {somme:.2f}")
+
+print(surface_A, surface_T)
