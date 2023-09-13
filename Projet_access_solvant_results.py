@@ -108,8 +108,6 @@ rayon_sphere_S = radius_vdW_soufre + radius_H20
 reponse = input("Enter a number of points (positive integer): ")
 number_of_points = int(reponse)
 
-
-
 # Generate points uniformly ditributed on the sphere
 phi = np.random.uniform(0, 2 * np.pi, number_of_points)
 cos_theta = np.random.uniform(-1, 1, number_of_points)

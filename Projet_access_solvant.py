@@ -5,14 +5,16 @@ import numpy as np
 import matplotlib.pyplot as plt 
 from mpl_toolkits.mplot3d import Axes3D
 import math
+import argparse
 
 
 ########1# Read a pdb_file #########
 
-#function
+###-- function --###
 
 def read_PDB(filename):
-    """Read the PDB_file and return a list of dictionnary. 
+    """
+    Read the PDB_file and return a list of dictionnary. 
     Keywords arguments:
     filename -- name of a PDB file
     """
@@ -39,9 +41,39 @@ def read_PDB(filename):
                 liste.append(dico)
     return liste
 
-#Main program
-file_PDB = "//wsl.localhost/Ubuntu/home/qcapdet/M2BI/GIT_PRJCT/Project_M2BI/PDB/7kh5.pdb"
-dico = read_PDB(file_PDB)
+def parse_args():
+    """
+    Analyze command line arguments and return parsed arguments.
+
+    Returns:
+        argparse.Namespace: Parsed arguments.
+    """
+    parser = argparse.ArgumentParser(description="Calculation of Solvent Accessible Surface of a Protein")
+    parser.add_argument("--pdb", required=True, help="Path to PDB file")
+    return parser.parse_args()
+
+def main():
+    """
+    Main program for calculating solvent accessible surface of a protein.
+
+    This function parses command line arguments, reads a PDB file, and performs calculations.
+    """
+    global dico
+    global file_PDB
+    
+    # Analyze the command line arguments
+    args = parse_args()
+
+    # Use the provided argument as the path to the PDB file
+    file_PDB = args.pdb
+
+    # Use the read_PDB function with the provided file path
+    dico = read_PDB(file_PDB)
+
+if __name__ == "__main__":
+    main()
+
+###-- Main program --###
 
 # Van der Waals (=vdW) for the carbon, nitrogen, oxygen and sulfur in Ångströms
 radius_vdW_carbone = 1.70
