@@ -38,6 +38,6 @@ conda deactivate
 ```
 python Projet_access_solvant.py --pdb /YOUR/PATH/Project_M2BI/PDB/7kh5.pdb
 ````
-2) The file Projet_access_solvant_results.py alows you to have the results in a text file found in the OUTPUTS/ directory.
+2) The file Projet_access_solvant_results.py allows you to have the results in a text file found in the OUTPUTS/ directory.
 
 3) The file RESULTS-PROJECT.ipynb contains grpahs produced in relation to the results obtained (lack of time, no commments to properly eplain the results apart from the last figure which is explained in the written report  !)
