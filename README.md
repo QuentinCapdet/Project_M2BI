@@ -1,7 +1,7 @@
 ## Project_M2BI
 
 
-#Setup your environment
+# Setup your environment
 
 Install [miniconda](https://docs.conda.io/en/latest/miniconda.html).
 
