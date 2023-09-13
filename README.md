@@ -24,6 +24,7 @@ conda env create -f py35.yml
 ```
 
 Load the `Project_M2BI` conda environment:
+
 ```
 conda activate Project_M2BI
 ```
