@@ -3,11 +3,11 @@
 
 ## Setup your environment
 
-Install miniconda
+Install [miniconda](https://docs.conda.io/en/latest/miniconda.html).
 
 ## clone the repository
 
-```
+```bash
 git clone https://github.com/QuentinCapdet/Project_M2BI.git
 ```
 
