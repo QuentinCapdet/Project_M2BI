@@ -26,3 +26,9 @@ conda env create -f py35.yml
 Load the `Project_M2BI` conda environment:
 ```
 conda activate Project_M2BI
+
+To deactivate an conda active environment, use
+
+```
+conda deactivate
+```
