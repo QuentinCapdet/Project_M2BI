@@ -17,7 +17,7 @@ Move to the new directory
 cd Project_M2BI
 ```
 
-Create the Project_M2BI.git conda environment:
+Create the Project_M2BI conda environment:
 
 ```
 conda env create -f py35.yml
