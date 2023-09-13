@@ -12,7 +12,11 @@ import math
 #function
 
 def read_PDB(filename):
-    # Créez une liste vide pour stocker les dictionnaires
+    """Read the PDB_file and return a list of dictionnary. 
+    Keywords arguments:
+    filename -- name of a PDB file
+    """
+    # Create an empty list to store dictionnary
     liste = []
 
     # Open the PDB file
@@ -36,7 +40,7 @@ def read_PDB(filename):
     return liste
 
 #Main program
-file_PDB = "//wsl.localhost/Ubuntu/home/qcapdet/M2BI/Project/7kh5.pdb"
+file_PDB = "//wsl.localhost/Ubuntu/home/qcapdet/M2BI/GIT_PRJCT/Project_M2BI/PDB/7kh5.pdb"
 dico = read_PDB(file_PDB)
 
 # Van der Waals (=vdW) for the carbon, nitrogen, oxygen and sulfur in Ångströms
