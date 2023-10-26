@@ -72,7 +72,7 @@ cd Project_kaggle
 Create the Project_Kaggle conda environment:
 
 ```
-conda create --name Project_kaggle_env
+conda env create -f Project_kaggle_env.yml
 ```
 
 Load the `Project_Kaggle` conda environment:
