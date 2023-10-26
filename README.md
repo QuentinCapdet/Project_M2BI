@@ -87,18 +87,6 @@ To deactivate an conda active environment, use
 conda deactivate
 ```
 
-Add python in yout environment:
-
-```
-conda install python
-```
-
-Add jupyter in your environment:
-
-```
-conda install jupyter
-```
-
 Run jupyter notebook
 
 ```
