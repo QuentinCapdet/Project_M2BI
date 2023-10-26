@@ -86,7 +86,7 @@ To deactivate an conda active environment, use
 conda deactivate
 ```
 
-Add jupyter :
+Add jupyter in your environment:
 
 ```
 conda install jupyter
