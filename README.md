@@ -69,21 +69,28 @@ Move to the new directory
 cd Project_kaggle
 ```
 
-Create the Project_Kaggle_env conda environment:
+Create the Project_Kaggle conda environment:
 
 ```
-conda env create -f py35.yml
+conda create --name Project_kaggle_env
 ```
 
-Load the `Project_Kaggle_env` conda environment:
+Load the `Project_Kaggle` conda environment:
 
 ```
 conda activate Project_Kaggle_env
 ```
+
 To deactivate an conda active environment, use
 
 ```
 conda deactivate
+```
+
+Add python in yout environment:
+
+```
+conda install python
 ```
 
 Add jupyter in your environment:
